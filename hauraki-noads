@@ -1,0 +1,22 @@
+#! /usr/bin/python2.7
+import sys
+import os
+import re
+
+p = re.compile(r'.*text.3483')
+po = re.compile(r'.*StreamTitle')
+state = "ON"
+os.system("sudo amixer -c 0 set PCM 30dB+")
+while True:
+    line = sys.stdin.readline()
+    print line
+    if not line:
+	break
+    if p.match(line) and state:
+	print "TURNING DOWN, we hate talking"
+	os.system("sudo amixer -c 0 set PCM 30dB-")
+	state = None
+    elif po.match(line) and not state:
+        print "TURNING UP, we like music"
+	os.system("sudo amixer -c 0 set PCM 30dB+")
+	state = "ON"

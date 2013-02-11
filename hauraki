@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sudo mpg123 http://radionetworknz-ice.streamguys.com:80/hkonline.mp3
